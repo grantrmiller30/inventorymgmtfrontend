@@ -36,7 +36,6 @@ const Login = () => {
         try {
             const { accessToken } = await login({ username, password }).unwrap()
             dispatch(setCredentials({ accessToken }))
-            console.log(accessToken)
             setUsername('')
             setPassword('')
             navigate('/inv')

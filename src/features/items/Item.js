@@ -2,7 +2,7 @@ import { Link } from "react-router-dom"
 
 import { useGetItemsQuery } from "./itemsApiSlice"
 
-const Item = ({itemId}) => {
+const Item = ({ itemId }) => {
     const { item } = useGetItemsQuery("itemsList", {
         selectFromResult: ({ data }) => ({
             item: data?.entities[itemId]

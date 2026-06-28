@@ -7,6 +7,7 @@ import NewItem from './features/items/NewItem'
 import NewUser from './features/users/NewUser'
 import SortedItemsList from './features/items/SortedItemsList'
 import DetailedItem from './features/items/DetailedItem'
+import EditItem from './features/items/EditItem'
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         </Route>
         <Route path="items">
           <Route path=":id" element={<DetailedItem/>}/>
+          <Route path="edit/:id" element={<EditItem/>}/>
         </Route>
         <Route path="login" element={<Login/>}/>
         <Route path="new" element={<NewItem/>}/> 

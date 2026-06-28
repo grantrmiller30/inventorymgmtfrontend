@@ -12,7 +12,7 @@ const EditableItem = ({ itemId }) => {
     })
     const navigate = useNavigate()
 
-    const onButtonClicked = () => navigate(`/inv/edit/${itemId}`)
+    const onButtonClicked = () => navigate(`/items/edit/${itemId}`)
 
     if (item) {
         return (

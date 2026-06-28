@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from "react-router-dom"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSave } from '@fortawesome/free-solid-svg-icons'
 
 import { useAddNewItemMutation } from "./itemsApiSlice"
 import useAuth from '../../hooks/useAuth'
@@ -39,7 +41,7 @@ const NewItem = () => {
     const errClass = isError ? "errmsg" : "offscreen"
 
     if(!userId) {
-        return <p>Error: Unauthorized</p>
+        return <p className="errmsg">Error: Unauthorized</p>
     }
 
     const content = (
@@ -50,7 +52,7 @@ const NewItem = () => {
                 <h2>New Note</h2>
                 <div className="form__action-buttons">
                     <button className="icon-button" title="Save" disabled={!canSave}>
-                        Save
+                        <FontAwesomeIcon icon={faSave}/>
                     </button>
                 </div>
             </div>
@@ -58,7 +60,7 @@ const NewItem = () => {
             <input className={`form__input`} id="name" name="name" type="text" autoComplete="off" value={name} onChange={onNameChanged}/>
 
             <label className="form__label" htmlFor="description">Description:</label>
-            <input className={`form__input`} id="description" name="description" type="text" value={description} onChange={onDescriptionChanged}/>
+            <textarea className={`form__input`} id="description" name="description" type="text" value={description} onChange={onDescriptionChanged}/>
             
             <label className="form__label" htmlFor="qunatity">Quantity:</label>
             <input className={`form__input`} id="quantity" name="quantity" type="number" value={quantity} onChange={onQuantityChanged}/>
