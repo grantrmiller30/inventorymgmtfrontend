@@ -29,10 +29,36 @@ export const itemsApiSlice = apiSlice.injectEndpoints({
                 } else return [{ type: 'Item', id: 'List'}]
             }
         }),
+        addNewItem: builder.mutation({
+            query: initialItemData => ({
+                url: '/items',
+                method: 'POST',
+                body: {
+                    ...initialItemData
+                }
+            }),
+            invalidatesTags: [{ type: 'Note', id: "LIST"}]
+        }),
+        updateItem: builder.mutation({
+            query: initialItemData => ({
+                url: '/items',
+                method: 'PATCH',
+                body: {
+                    ...initialItemData
+                }
+            }), invalidatesTags: (result, error, arg) => [{ type: 'Note', id: arg.id}]
+        }),
+        deleteItem: builder.mutation({
+            query: ({id}) => ({
+                url: '/notes',
+                method: 'DELETE',
+                body: { id }
+            }), invalidatesTags:  (result, error, arg) => [{ tyype: 'Note', id: arg.id}]
+        })
     })
 })
 
-export const { useGetItemsQuery } = itemsApiSlice
+export const { useGetItemsQuery, useAddNewItemMutation, useUpdateItemMutation, useDeleteItemMutation } = itemsApiSlice
 export const selectItemsResult = itemsApiSlice.endpoints.getItems.select()
 
 const selectItemsData = createSelector(selectItemsResult, itemsResult => itemsResult.data)

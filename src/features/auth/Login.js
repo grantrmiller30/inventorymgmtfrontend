@@ -34,11 +34,12 @@ const Login = () => {
     const handleSubmit = async (e) => {
         e.preventDefault()
         try {
-            const {accessToken} = await login({username,password}).unwrap()
-            dispatch(setCredentials({accessToken}))
+            const { accessToken } = await login({ username, password }).unwrap()
+            dispatch(setCredentials({ accessToken }))
+            console.log(accessToken)
             setUsername('')
             setPassword('')
-            navigate('/inv')
+            navigate('/new')
         } catch (err) {
             if(!err.status) {
                 setErrMsg('No Server Response')
