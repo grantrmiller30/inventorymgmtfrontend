@@ -1,5 +1,7 @@
+import useAuth from "../../hooks/useAuth"
 import { useGetItemsQuery } from "./itemsApiSlice"
 import Item from "./Item"
+import OwnedItem from "./OwnedItem"
 
 const ItemsList = () => {
     const {
@@ -10,6 +12,8 @@ const ItemsList = () => {
         error
     } = useGetItemsQuery('itemsList', { pollingInterval: 15000, refetchOnFocus: true, refetchOnMountOrArgChange: true})
 
+    const { userId } = useAuth()
+
     let content
 
     if (isLoading) content = <p>"Loading"</p>
@@ -19,12 +23,18 @@ const ItemsList = () => {
     if (isSuccess) {
         const {ids, entities} = items
 
-        const inventory = ids?.length && ids.map(itemId => <Item key={itemId} itemId={itemId}/>)
+        const userInventory = ids?.length && ids.filter(itemId => entities[itemId].userId === userId).map(itemId => <OwnedItem key={itemId} itemId={itemId}/>)
+        const otherInventory = ids?.length && ids.filter(itemId => entities[itemId].userId !== userId).map(itemId => <Item key={itemId} itemId={itemId}/>) 
 
         content = (
-            <section className="inventory-grid">
-                {inventory}
-            </section>
+            <div className="inventory-grid__container">
+                <section className="inventory-grid__user">
+                    {userInventory}
+                </section>
+                <section className="inventory-grid__other">
+                    {otherInventory}
+                </section>
+            </div>
         )
     }
 

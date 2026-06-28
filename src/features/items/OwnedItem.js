@@ -1,10 +1,10 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faPenToSquare } from "@fortawesome/free-solid-svg-icons"
-import { useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 
 import { useGetItemsQuery } from "./itemsApiSlice"
 
-const EditableItem = ({ itemId }) => {
+const OwnedItem = ({ itemId }) => {
     const { item } = useGetItemsQuery("itemsList", {
         selectFromResult: ({ data }) => ({
             item: data?.entities[itemId]
@@ -23,9 +23,10 @@ const EditableItem = ({ itemId }) => {
                     <p className="item__quantity">{`Qty: ${item.quantity}`}</p>
                     <button className="item__button" onClick={onButtonClicked}><FontAwesomeIcon icon={faPenToSquare}/></button>
                 </section>
+                <Link to={`/items/${itemId}`}>See More</Link>
             </div>
         )
     } else return null
 }
 
-export default EditableItem
+export default OwnedItem

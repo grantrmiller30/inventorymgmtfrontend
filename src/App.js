@@ -1,11 +1,10 @@
 import { Routes, Route } from 'react-router-dom'
 
 import Login from './features/auth/Login'
-import ItemsList from './features/items/ItemsList'
 import Layout from './components/Layout'
 import NewItem from './features/items/NewItem'
 import NewUser from './features/users/NewUser'
-import SortedItemsList from './features/items/SortedItemsList'
+import ItemsList from './features/items/ItemsList'
 import DetailedItem from './features/items/DetailedItem'
 import EditItem from './features/items/EditItem'
 
@@ -23,7 +22,7 @@ function App() {
         </Route>
         <Route path="login" element={<Login/>}/>
         <Route path="new" element={<NewItem/>}/> 
-        <Route path="inv" element={<SortedItemsList/>}/>
+        <Route path="inv" element={<ItemsList/>}/>
       </Route>
     </Routes>
   );
