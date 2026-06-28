@@ -6,6 +6,7 @@ import Layout from './components/Layout'
 import NewItem from './features/items/NewItem'
 import NewUser from './features/users/NewUser'
 import SortedItemsList from './features/items/SortedItemsList'
+import DetailedItem from './features/items/DetailedItem'
 
 function App() {
   return (
@@ -14,6 +15,9 @@ function App() {
         <Route index element={<ItemsList/>}/>
         <Route path="users">
           <Route path="new" element={<NewUser/>}/>
+        </Route>
+        <Route path="items">
+          <Route path=":id" element={<DetailedItem/>}/>
         </Route>
         <Route path="login" element={<Login/>}/>
         <Route path="new" element={<NewItem/>}/> 

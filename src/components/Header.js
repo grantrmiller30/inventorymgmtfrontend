@@ -34,11 +34,11 @@ const Header = () => {
         navigate('/')
     }
 
-    let newItemButton = (
+    let newItemButton = userId ? (
             <button className="icon-button" title="New Note" onClick={onNewItemClicked}>
                 Add an Item
             </button>
-        )
+        ) : null
 
     let itemButton = (
             <button className="icon-button" title="Notes" onClick={onItemsClicked}>

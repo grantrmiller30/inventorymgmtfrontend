@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom"
+
 import { useGetItemsQuery } from "./itemsApiSlice"
 
 const Item = ({itemId}) => {
@@ -13,6 +15,7 @@ const Item = ({itemId}) => {
                 <h3 className="item__title">{item.name}</h3>
                 <p className="item__description">{item.description.length > 100 ? item.description.substring(0, 100) + '...' : item.description}</p>
                 <p className="item__quantity">{`Qty: ${item.quantity}`}</p>
+                <Link to={`/items/${itemId}`}>See More</Link>
             </div>
         )
     } else return null
