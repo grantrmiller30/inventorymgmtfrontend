@@ -39,7 +39,7 @@ const Login = () => {
             console.log(accessToken)
             setUsername('')
             setPassword('')
-            navigate('/new')
+            navigate('/inv')
         } catch (err) {
             if(!err.status) {
                 setErrMsg('No Server Response')
