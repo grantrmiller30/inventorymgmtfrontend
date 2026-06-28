@@ -5,12 +5,13 @@ import { faSave } from '@fortawesome/free-solid-svg-icons'
 
 import { useAddNewItemMutation } from "./itemsApiSlice"
 import useAuth from '../../hooks/useAuth'
+import useTitle from '../../hooks/useTitle'
 
 const NewItem = () => {
     const [addNewItem, { isLoading, isSuccess, isError, error }] = useAddNewItemMutation()
 
     const navigate = useNavigate()
-    const { username, userId } = useAuth()
+    const { userId } = useAuth()
 
     const [name, setName] = useState('')
     const [description, setDescription] = useState('')
@@ -24,6 +25,8 @@ const NewItem = () => {
             navigate('/inv')
         }
     }, [isSuccess, navigate])
+
+    useTitle("New Item")
 
     const onNameChanged = e => setName(e.target.value)
     const onDescriptionChanged = e => setDescription(e.target.value)

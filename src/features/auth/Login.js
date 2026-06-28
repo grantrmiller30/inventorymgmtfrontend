@@ -6,6 +6,7 @@ import PulseLoader from "react-spinners/PulseLoader"
 import { setCredentials } from './authSlice'
 import { useLoginMutation } from './authApiSlice'
 import usePersist from '../../hooks/usePersist'
+import useTitle from '../../hooks/useTitle'
 
 const Login = () => {
     const userRef = useRef()
@@ -26,6 +27,8 @@ const Login = () => {
     useEffect(() => {
         setErrMsg('')
     }, [username, password])
+
+    useTitle("Manager Login")
 
     const handleUserInput = (e) => setUsername(e.target.value)
     const handlePwdInput = (e) => setPassword(e.target.value)
@@ -62,7 +65,7 @@ const Login = () => {
     const content = (
         <section className="public">
             <header>
-                <h1>Employee Login</h1>
+                <h1>Manager Login</h1>
             </header>
             <main className="login">
                 <p ref={errRef} className={errClass} aria-live="assertive">{errMsg}</p>

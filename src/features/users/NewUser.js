@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faSave } from "@fortawesome/free-solid-svg-icons"
 
 import { useAddNewUserMutation } from "./usersApiSlice"
+import useTitle from '../../hooks/useTitle'
 
 const USER_REGEX = /^[A-z]{3,20}$/
 const PWD_REGEX = /^[A-z0-9!@#$%]{4,32}$/
@@ -32,6 +33,8 @@ const NewUser = () => {
             navigate('/inv')
         }
     }, [isSuccess, navigate])
+
+    useTitle("New User")
 
     const onUsernameChanged = e => setUsername(e.target.value)
     const onPasswordChanged = e => setPassword(e.target.value)

@@ -5,6 +5,7 @@ import { faSave, faTrash } from "@fortawesome/free-solid-svg-icons"
 
 import { useGetItemsQuery, useUpdateItemMutation, useDeleteItemMutation } from "./itemsApiSlice"
 import useAuth from '../../hooks/useAuth'
+import useTitle from "../../hooks/useTitle"
 
 const EditItem = () => {
     const { id: itemId } = useParams()
@@ -31,6 +32,8 @@ const EditItem = () => {
             navigate(`/inv`)
         }
     }, [isSuccess, isDelSuccess, navigate])
+
+    useTitle("Edit " + item.name)
 
     if(userId !== item.userId) {
         return (

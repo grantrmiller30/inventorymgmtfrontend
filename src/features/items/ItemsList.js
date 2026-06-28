@@ -1,4 +1,5 @@
 import useAuth from "../../hooks/useAuth"
+import useTitle from "../../hooks/useTitle"
 import { useGetItemsQuery } from "./itemsApiSlice"
 import Item from "./Item"
 import OwnedItem from "./OwnedItem"
@@ -12,7 +13,11 @@ const ItemsList = () => {
         error
     } = useGetItemsQuery('itemsList', { pollingInterval: 15000, refetchOnFocus: true, refetchOnMountOrArgChange: true})
 
-    const { userId } = useAuth()
+    const { userId, username } = useAuth()
+
+    const title = userId ? username + "'s Inventory" : "Guest Inventory"
+
+    useTitle(title)
 
     let content
 

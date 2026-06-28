@@ -1,9 +1,10 @@
 import { useParams, useNavigate } from "react-router-dom"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faP, faPenToSquare } from "@fortawesome/free-solid-svg-icons"
+import { faPenToSquare } from "@fortawesome/free-solid-svg-icons"
 
 import { useGetItemsQuery } from "./itemsApiSlice"
 import useAuth from '../../hooks/useAuth'
+import useTitle from "../../hooks/useTitle"
 
 const DetailedItem = () => {
     const { id: itemId } = useParams()
@@ -15,6 +16,8 @@ const DetailedItem = () => {
     })
 
     const navigate = useNavigate()
+
+    useTitle(item.name)
 
     const onClick = () => navigate(`/items/edit/${itemId}`)
 
