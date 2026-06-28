@@ -18,10 +18,10 @@ function App() {
         </Route>
         <Route path="items">
           <Route path=":id" element={<DetailedItem/>}/>
+          <Route path="new" element={<NewItem/>}/> 
           <Route path="edit/:id" element={<EditItem/>}/>
         </Route>
         <Route path="login" element={<Login/>}/>
-        <Route path="new" element={<NewItem/>}/> 
         <Route path="inv" element={<ItemsList/>}/>
       </Route>
     </Routes>

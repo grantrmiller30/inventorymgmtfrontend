@@ -1,18 +1,13 @@
 import { useEffect } from 'react'
-import { useNavigate, Link, useLocation } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 import { useSendLogoutMutation } from '../features/auth/authApiSlice'
 import useAuth from '../hooks/useAuth'
-
-const DASH_REGEX = /^\/dash(\/)?$/
-const NOTES_REGEX = /^\/dash\/notes(\/)?$/
-const USERS_REGEX = /^\/dash\/users(\/)?$/
 
 const Header = () => {
     const { username, userId} = useAuth()
 
     const navigate = useNavigate()
-    const {pathname} = useLocation()
 
     const[sendLogout, {isLoading, isSuccess, isError, error}] = useSendLogoutMutation()
 
@@ -20,39 +15,47 @@ const Header = () => {
         if (isSuccess) navigate('/')
     }, [isSuccess, navigate])
 
-    const onNewItemClicked = () => navigate('/new')
+    const onNewItemClicked = () => navigate('/items/new')
     const onItemsClicked = () => navigate('/inv')
     const onLoginClicked = () => navigate('/login')
-
-    let dashClass = null
-//    if (!DASH_REGEX.test(pathname) && !NOTES_REGEX.test(pathname) && !USERS_REGEX.test(pathname)) {
-//        dashClass = "dash-header__container--small"
-//    }
+    const onNewUserClicked = () => navigate('/users/new')
 
     const onLogoutClicked = () => {
         sendLogout()
         navigate('/')
     }
 
-    let newItemButton = userId ? (
-            <button className="icon-button" title="New Note" onClick={onNewItemClicked}>
+    const newItemButton = userId ? (
+            <button className="dash-button" title="New Note" onClick={onNewItemClicked}>
                 Add an Item
             </button>
         ) : null
 
-    let itemButton = (
-            <button className="icon-button" title="Notes" onClick={onItemsClicked}>
+    const newUserButton = userId ? null : (
+        <button className="dash-button" title="New User" onClick={onNewUserClicked}>
+            Create Account
+        </button>
+    )
+
+    const itemButton = (
+            <button className="dash-button" title="Notes" onClick={onItemsClicked}>
                 To Inventory     
             </button>
         )
 
-    const logoutButton = (
+    const logoutButton = userId ? (
         <button
             className="icon-button"
             title="Logout"
             onClick={onLogoutClicked}
         >
             Logout
+        </button>
+    ) : null
+
+    const loginButton = userId ? null : (
+        <button className="dash-button" title="Login" onClick={onLoginClicked}>
+            Login
         </button>
     )
 
@@ -66,7 +69,9 @@ const Header = () => {
             <>
                 {newItemButton}
                 {itemButton}
-                {userId ? logoutButton : null}
+                {logoutButton}
+                {newUserButton}
+                {loginButton}
             </>
         )
     }
@@ -80,7 +85,6 @@ const Header = () => {
             <div className={`dash-header__container`}>
                 <nav className="dash-header__nav">
                     {buttonContent}
-                    {userId ? <></> : <button className="icon-button" title="Login" onClick={onLoginClicked}>Login</button>}
                 </nav>
             </div>
         </header>
