@@ -15,9 +15,7 @@ root.render(
   <React.StrictMode>
     <Provider store={store}>
       <BrowserRouter basename="/inventorymgmtfrontend">
-        <Routes>
-          <Route path="/*" element={<App />}/>
-        </Routes>
+        <App/>
       </BrowserRouter>
     </Provider>  
   </React.StrictMode>
