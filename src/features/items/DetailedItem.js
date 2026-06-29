@@ -5,6 +5,7 @@ import { faPenToSquare } from "@fortawesome/free-solid-svg-icons"
 import { useGetItemsQuery } from "./itemsApiSlice"
 import useAuth from '../../hooks/useAuth'
 import useTitle from "../../hooks/useTitle"
+import PulseLoader from "react-spinners/PulseLoader"
 
 const DetailedItem = () => {
     const { id: itemId } = useParams()
@@ -17,7 +18,11 @@ const DetailedItem = () => {
 
     const navigate = useNavigate()
 
-    useTitle(item.name)
+    const title = item ? item.name : "Loading"
+
+    useTitle(title)
+
+    if(!item) return <PulseLoader color="white"/>
 
     const onClick = () => navigate(`/items/edit/${itemId}`)
 
