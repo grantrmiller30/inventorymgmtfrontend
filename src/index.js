@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client'
 import { Provider } from 'react-redux'
-import { BrowserRouter } from 'react-router-dom'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { disableReactDevTools } from '@fvilers/disable-react-devtools'
 
 import { store } from './app/store';
@@ -15,7 +15,9 @@ root.render(
   <React.StrictMode>
     <Provider store={store}>
       <BrowserRouter>
-        <App />
+        <Routes>
+          <Route path="/*" element={<App />}/>
+        </Routes>
       </BrowserRouter>
     </Provider>  
   </React.StrictMode>

@@ -31,6 +31,7 @@ const EditItem = () => {
             setQuantity(0)
             navigate(isSuccess ? `/items/${itemId}` : `/inv`)
         }
+        //eslint-disable-next-line
     }, [isSuccess, isDelSuccess, navigate])
 
     useTitle("Edit " + item.name)
