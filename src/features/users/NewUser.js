@@ -70,7 +70,7 @@ const NewUser = () => {
             <input className={`form__input ${validUserClass}`} id="username" name="username" type="text" autoComplete="off" value={username} onChange={onUsernameChanged}/>
 
             <label className="form__label" htmlFor="password">Password: <span className="nowrap">[4-12 chars incl. !@#$%]</span></label>
-            <input className={`form__input ${validPwdClass}`} id="password" name="password" type="text" value={password} onChange={onPasswordChanged}/>
+            <input className={`form__input ${validPwdClass}`} id="password" name="password" type="password" value={password} onChange={onPasswordChanged}/>
 
             <label className="form__label" htmlFor="firstname">First Name:</label>
             <input className={`form__input`} id="first" name="first" value={first} onChange={onFirstChanged}/>
