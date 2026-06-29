@@ -1,4 +1,4 @@
-import { useParams, useNavigate } from "react-router-dom"
+import { useParams, useNavigate, Link } from "react-router-dom"
 import { useEffect, useState } from 'react'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faSave, faTrash } from "@fortawesome/free-solid-svg-icons"
@@ -29,7 +29,7 @@ const EditItem = () => {
             setName('')
             setDescription('')
             setQuantity(0)
-            navigate(`/inv`)
+            navigate(isSuccess ? `/items/${itemId}` : `/inv`)
         }
     }, [isSuccess, isDelSuccess, navigate])
 
@@ -64,27 +64,30 @@ const EditItem = () => {
     const errContent = (error?.data?.message || delerror?.data?.message) ?? ''
 
     return (
-      <>
-      <p className={errClass}>{errContent}</p>
-      <h1 className="detailed-item__name">
-        <input className="form__input" id="name" name="name" type="text" autoComplete="off" value={name} onChange={onNameChanged}/>
-        <button className="icon-button" title="Save" disabled={!canSave} onClick={onSaveItemClicked}>
-            <FontAwesomeIcon icon={faSave}/>
-        </button>
-        <button className="icon-button" title="Delete" disabled={!canSave} onClick={onDeleteItemClicked}>
-            <FontAwesomeIcon icon={faTrash}/>
-        </button>
-      </h1>
-      <main className="detailed-item">
-        <section className="detailed-item__description">
-          <h2 className="detailed-item__description">Description</h2>
-          <textarea className={`form__input`} id="description" name="description" type="text" value={description} onChange={onDescriptionChanged}/>
-        </section>
-        <label className="detailed-item__quantity">Quantity: </label>
-        <input className={`form__input`} id="quantity" name="quantity" type="number" value={quantity} onChange={onQuantityChanged}/>
-        <h2 className="detailed-item__id">Assigned UserId: {item.userId}</h2>
-      </main>
-      </>
+      <div className="form detailed-item">
+        <p className={errClass}>{errContent}</p>
+        <div className="detailed-item__header">
+            <input className="form__input" id="name" name="name" type="text" autoComplete="off" value={name} onChange={onNameChanged}/>
+            <button className="icon-button" title="Save" disabled={!canSave} onClick={onSaveItemClicked}>
+                <FontAwesomeIcon icon={faSave}/>
+            </button>
+            <button className="icon-button" title="Delete" disabled={!canSave} onClick={onDeleteItemClicked}>
+                <FontAwesomeIcon icon={faTrash}/>
+            </button>
+        </div>
+        <main className="detailed-item">
+            <section className="detailed-item__description">
+                <h2>Description</h2>
+                <textarea className="form__input" id="description" name="description" type="text" value={description} onChange={onDescriptionChanged}/>
+            </section>
+            <h2 className="detailed-item__quantity">Quantity: </h2>
+            <input className="form__input" id="quantity" name="quantity" type="number" value={quantity} onChange={onQuantityChanged}/>
+            <h2 className="detailed-item__id">Assigned UserId: {item.userId}</h2>
+        </main>
+        <footer>
+          <Link to="/">Back to Home</Link>
+        </footer>
+      </div>
   )
 }
 

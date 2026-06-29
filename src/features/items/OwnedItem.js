@@ -21,7 +21,7 @@ const OwnedItem = ({ itemId }) => {
                 <p className="item__description">{item.description.length > 100 ? item.description.substring(0, 100) + '...' : item.description}</p>
                 <section className="item__bottom">
                     <p className="item__quantity">{`Qty: ${item.quantity}`}</p>
-                    <button className="item__button" onClick={onButtonClicked}><FontAwesomeIcon icon={faPenToSquare}/></button>
+                    <button className="icon-button" onClick={onButtonClicked}><FontAwesomeIcon icon={faPenToSquare}/></button>
                 </section>
                 <Link to={`/items/${itemId}`}>See More</Link>
             </div>

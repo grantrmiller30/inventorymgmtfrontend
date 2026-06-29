@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { useNavigate } from "react-router-dom"
+import { useNavigate, Link } from "react-router-dom"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faSave } from "@fortawesome/free-solid-svg-icons"
 
@@ -79,6 +79,9 @@ const NewUser = () => {
             <input className={`form__input`} id="last" name="last" value={last} onChange={onLastChanged}/>
 
         </form>
+        <footer className="form">
+            <Link to="/">Back to Home</Link>
+        </footer>
         </>
     )
 

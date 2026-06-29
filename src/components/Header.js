@@ -27,7 +27,7 @@ const Header = () => {
 
     const newItemButton = userId ? (
             <button className="dash-button" title="New Note" onClick={onNewItemClicked}>
-                Add an Item
+                Add Item
             </button>
         ) : null
 
@@ -39,13 +39,13 @@ const Header = () => {
 
     const itemButton = (
             <button className="dash-button" title="Notes" onClick={onItemsClicked}>
-                To Inventory     
+                Inventory     
             </button>
         )
 
     const logoutButton = userId ? (
         <button
-            className="icon-button"
+            className="dash-button"
             title="Logout"
             onClick={onLogoutClicked}
         >
